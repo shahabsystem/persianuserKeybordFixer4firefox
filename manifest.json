@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Farsi Keyboard Fix",
+  "version": "1.0.0",
+  "description": "تشخیص و اصلاح متن‌هایی که با زبان اشتباه کیبورد تایپ شده‌اند.",
+  "permissions": ["activeTab", "menus", "notifications"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "fix-keyboard": {
+      "suggested_key": {
+        "default": "Alt+Shift+K"
+      },
+      "description": "اصلاح متن با کیبورد اشتباه"
+    }
+  },
+  "icons": {
+    "48": "icon.svg",
+    "96": "icon.svg"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "farsi-keyboard-fix@example.invalid",
+      "strict_min_version": "109.0"
+    }
+  }
+}
