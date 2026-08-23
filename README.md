@@ -21,6 +21,5 @@
 
 ## توسعه‌دهنده
 Hamed Mohammad Nikche
-hamedmohammadinikche@gmail.com
-https://github.com/shahabsystem
+اگر با برنامه حال كردين يه قهوه مهمونم كنين
 https://coffeebede.com/shahabsystem
