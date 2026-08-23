@@ -1,38 +1,24 @@
 {
   "manifest_version": 2,
   "name": "Farsi Keyboard Fix",
-  "version": "2.0.0",
-  "description": "تشخیص و اصلاح تایپ با زبان اشتباه کیبورد فارسی و انگلیسی.",
+  "version": "3.0.0",
+  "description": "تشخیص هوشمند تایپ با زبان اشتباه کیبورد فارسی و انگلیسی، به‌همراه جایگزینی کلمات سفارشی.",
   "permissions": ["storage", "menus", "notifications"],
-  "background": {
-    "scripts": ["background.js"]
-  },
-  "options_ui": {
-    "page": "options.html",
-    "open_in_tab": true
-  },
-  "browser_action": {
-    "default_title": "Farsi Keyboard Fix"
-  },
+  "background": {"scripts": ["background.js"]},
+  "options_ui": {"page": "options.html", "open_in_tab": true},
+  "browser_action": {"default_title": "Farsi Keyboard Fix"},
   "commands": {
     "fix-keyboard": {
-      "suggested_key": {
-        "default": "Alt+Shift+K"
-      },
+      "suggested_key": {"default": "Alt+Shift+K"},
       "description": "اصلاح متن با کیبورد اشتباه"
     }
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_start"
-    }
-  ],
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "run_at": "document_start"
+  }],
   "browser_specific_settings": {
-    "gecko": {
-      "id": "farsi-keyboard-fix@shahabsystem",
-      "strict_min_version": "109.0"
-    }
+    "gecko": {"id": "farsi-keyboard-fix@shahabsystem", "strict_min_version": "109.0"}
   }
 }

@@ -1,14 +1,15 @@
 const DEFAULTS = {
   enabled: true,
   autoReplace: false,
-  shortcut: "Alt+Shift+K"
+  shortcut: "Alt+Shift+K",
+  customWords: {}
 };
 
-async function getSettings() {
+async function settings() {
   return browser.storage.local.get(DEFAULTS);
 }
 
-function createMenu() {
+function rebuildMenus() {
   browser.menus.removeAll().then(() => {
     browser.menus.create({
       id: "fix-keyboard",
@@ -23,16 +24,20 @@ function createMenu() {
   }).catch(() => {});
 }
 
-browser.runtime.onInstalled.addListener(createMenu);
-browser.runtime.onStartup.addListener(createMenu);
+browser.runtime.onInstalled.addListener(async () => {
+  const current = await browser.storage.local.get(null);
+  await browser.storage.local.set({...DEFAULTS, ...current});
+  rebuildMenus();
+});
 
-browser.menus.onClicked.addListener(async (info, tab) => {
-  if (!tab?.id) return;
+browser.runtime.onStartup.addListener(rebuildMenus);
+
+browser.menus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "open-options") {
     browser.runtime.openOptionsPage();
     return;
   }
-  if (info.menuItemId === "fix-keyboard") {
+  if (info.menuItemId === "fix-keyboard" && tab?.id) {
     browser.tabs.sendMessage(tab.id, {
       type: "FIX_TEXT",
       selectedText: info.selectionText || ""
@@ -42,41 +47,31 @@ browser.menus.onClicked.addListener(async (info, tab) => {
 
 browser.commands.onCommand.addListener(async (command, tab) => {
   if (command !== "fix-keyboard" || !tab?.id) return;
-  const settings = await getSettings();
-  if (!settings.enabled) return;
-  browser.tabs.sendMessage(tab.id, { type: "FIX_TEXT" }).catch(() => {});
+  const s = await settings();
+  if (!s.enabled) return;
+  browser.tabs.sendMessage(tab.id, {type: "FIX_TEXT"}).catch(() => {});
 });
 
-browser.runtime.onMessage.addListener(async (message) => {
-  if (!message) return;
+browser.runtime.onMessage.addListener(async (m) => {
+  if (!m) return;
+  if (m.type === "GET_SETTINGS") return settings();
 
-  if (message.type === "GET_SETTINGS") {
-    return getSettings();
+  if (m.type === "SETTINGS_CHANGED") {
+    rebuildMenus();
+    const s = await settings();
+    const tabs = await browser.tabs.query({});
+    for (const tab of tabs) {
+      if (tab.id) browser.tabs.sendMessage(tab.id, {type:"SETTINGS", settings:s}).catch(()=>{});
+    }
   }
 
-  if (message.type === "SETTINGS_CHANGED") {
-    createMenu();
-    const settings = await getSettings();
-    browser.tabs.query({}).then(tabs => {
-      for (const tab of tabs) {
-        if (!tab.id) continue;
-        browser.tabs.sendMessage(tab.id, {
-          type: "SETTINGS",
-          settings
-        }).catch(() => {});
-      }
-    });
-  }
-
-  if (message.type === "NOTIFY") {
+  if (m.type === "NOTIFY") {
     browser.notifications.create({
-      type: "basic",
-      title: "Farsi Keyboard Fix",
-      message: String(message.text || "")
-    }).catch(() => {});
+      type:"basic",
+      title:"Farsi Keyboard Fix",
+      message:String(m.text || "")
+    }).catch(()=>{});
   }
 });
 
-browser.browserAction.onClicked.addListener(() => {
-  browser.runtime.openOptionsPage();
-});
+browser.browserAction.onClicked.addListener(() => browser.runtime.openOptionsPage());
