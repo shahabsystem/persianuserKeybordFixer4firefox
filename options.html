@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>تنظیمات Farsi Keyboard Fix</title>
+<link rel="stylesheet" href="options.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1>⌨️ Farsi Keyboard Fix</h1>
+    <p>دستیار کوچک برای نجات تایپ‌های اشتباه فارسی و انگلیسی 😄</p>
+  </header>
+
+  <section class="card">
+    <h2>تنظیمات</h2>
+
+    <label class="row">
+      <span>
+        <strong>فعال بودن افزونه</strong>
+        <small>اگر خاموش باشد، میانبر، پیشنهاد و جایگزینی خودکار غیرفعال می‌شوند.</small>
+      </span>
+      <input id="enabled" type="checkbox">
+    </label>
+
+    <label class="row">
+      <span>
+        <strong>جایگزینی خودکار</strong>
+        <small>اگر روشن باشد، متن مشکوک بدون نمایش پیشنهاد جایگزین می‌شود. اگر خاموش باشد، پیشنهاد نمایش داده می‌شود.</small>
+      </span>
+      <input id="autoReplace" type="checkbox">
+    </label>
+
+    <div class="shortcut">
+      <strong>کلید میانبر</strong>
+      <small>داخل کادر کلیک کنید و ترکیب دلخواهتان را فشار دهید؛ حداقل یک کلید کمکی مثل Ctrl، Alt یا Shift توصیه می‌شود.</small>
+      <input id="shortcut" readonly placeholder="مثلاً Alt+Shift+K">
+      <button id="clearShortcut" type="button">پاک کردن</button>
+      <span id="shortcutStatus"></span>
+    </div>
+  </section>
+
+  <section class="card about">
+    <h2>درباره توسعه‌دهنده</h2>
+    <p>توسعه‌دهنده: <strong>Hamed Mohammad Nikche</strong></p>
+    <p>ایمیل: <a href="mailto:hamedmohammadinikche@gmail.com">hamedmohammadinikche@gmail.com</a></p>
+    <p>گیت‌هاب: <a href="https://github.com/shahabsystem" target="_blank" rel="noopener">github.com/shahabsystem</a></p>
+    <p>اگر این افزونه به کارت آمد، می‌توانی با یک قهوه از توسعه‌اش حمایت کنی ☕</p>
+    <a class="coffee" href="https://coffeebede.com/shahabsystem" target="_blank" rel="noopener">☕ یه قهوه مهمونم کن</a>
+  </section>
+
+  <footer>نسخه 2.0.0 — بدون ارسال متن‌های شما به سرور</footer>
+</main>
+<script src="options.js"></script>
+</body>
+</html>

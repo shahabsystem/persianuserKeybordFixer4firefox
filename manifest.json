@@ -1,19 +1,19 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Farsi Keyboard Fix",
-  "version": "1.0.0",
-  "description": "تشخیص و اصلاح متن‌هایی که با زبان اشتباه کیبورد تایپ شده‌اند.",
-  "permissions": ["activeTab", "menus", "notifications"],
+  "version": "2.0.0",
+  "description": "تشخیص و اصلاح تایپ با زبان اشتباه کیبورد فارسی و انگلیسی.",
+  "permissions": ["storage", "menus", "notifications"],
   "background": {
     "scripts": ["background.js"]
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_idle"
-    }
-  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "browser_action": {
+    "default_title": "Farsi Keyboard Fix"
+  },
   "commands": {
     "fix-keyboard": {
       "suggested_key": {
@@ -22,13 +22,16 @@
       "description": "اصلاح متن با کیبورد اشتباه"
     }
   },
-  "icons": {
-    "48": "icon.svg",
-    "96": "icon.svg"
-  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "farsi-keyboard-fix@example.invalid",
+      "id": "farsi-keyboard-fix@shahabsystem",
       "strict_min_version": "109.0"
     }
   }
