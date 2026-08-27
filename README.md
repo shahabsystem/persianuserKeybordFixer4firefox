@@ -18,7 +18,11 @@
 
 مثال:
 ایمیل => hamed@example.com
-#https://addons.mozilla.org/en-US/firefox/addon/farsikeyboardfix4persian/ لينك_برنامه در افزونه هاي فايرفاكس در سايت رسمي 
+
+
+
+ينك_برنامه در افزونه هاي فايرفاكس در سايت رسمي
+https://addons.mozilla.org/en-US/firefox/addon/farsikeyboardfix4persian/ ل 
 
 ## توسعه‌دهنده
 Hamed Mohammad Nikche
