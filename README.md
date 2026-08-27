@@ -20,9 +20,8 @@
 ایمیل => hamed@example.com
 
 
-
-ينك_برنامه در افزونه هاي فايرفاكس در سايت رسمي
-https://addons.mozilla.org/en-US/firefox/addon/farsikeyboardfix4persian/ ل 
+#لينك_برنامه در افزونه هاي فايرفاكس در سايت رسمي
+https://addons.mozilla.org/en-US/firefox/addon/farsikeyboardfix4persian/  
 
 ## توسعه‌دهنده
 Hamed Mohammad Nikche
