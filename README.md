@@ -10,7 +10,6 @@
 - کادر تست داخلی
 - تعریف کلمه/عبارت سفارشی
 - خروجی و ورود TXT
-- اطلاعات توسعه‌دهنده
 
 ## فرمت کلمات سفارشی
 هر خط:
@@ -23,7 +22,5 @@
 #لينك_برنامه در افزونه هاي فايرفاكس در سايت رسمي
 https://addons.mozilla.org/en-US/firefox/addon/farsikeyboardfix4persian/  
 
-## توسعه‌دهنده
-Hamed Mohammad Nikche
-اگر با برنامه حال كردين يه قهوه مهمونم كنين
-https://coffeebede.com/shahabsystem
+
+Hame
